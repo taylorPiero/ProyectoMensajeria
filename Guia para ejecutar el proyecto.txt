@@ -1,0 +1,32 @@
+APIS appPersonas
+
+appPersonas son las apis desarrollados en FastApp 
+
+ejecutable
+
+la carpeta env  entras y sacas esta carpeta (Libfun) luego elimina env     
+
+crea un nuevo entorno con el nombre de (env) y metes la  carpeta dentro de ese entorno(Libfun)
+
+python -m venv env
+
+Activas entorno
+
+env\scripts\activate.bat
+
+agregas packages que esta afuera de las carpetas y lo agregas en tu appPersonas
+ingresas este comando para que te reconozca
+
+pip install -r packages.txt
+
+
+para ejecutar dentro del entorno
+
+uvicorn appPersonas.main:app  --port 8081 --reload
+
+
+en REACT
+
+para ejecutar
+
+npm start 

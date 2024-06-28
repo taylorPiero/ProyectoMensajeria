@@ -1,0 +1,22 @@
+.login-page, .register-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f4f6f9;
+  margin: 0;
+  padding: 0;
+}
+
+.login-box, .register-box {
+  width: 360px;
+  margin: 0;
+}
+
+.card {
+  border-radius: 5px;
+}
+
+.card-header, .card-body {
+  padding: 20px;
+}
