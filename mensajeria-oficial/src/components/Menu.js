@@ -80,6 +80,12 @@ export default function Menu() {
                     <p>Contactos</p>
                   </Link>
                 </li>
+                <li className="nav-item">
+                  <Link to="/contactinactivos" className="nav-link">
+                    <i className="far fa-circle nav-icon" />
+                    <p>Inactivos</p>
+                  </Link>
+                </li>
               </ul>
             </li>
 
@@ -209,33 +215,9 @@ export default function Menu() {
                 </li> */}
               {/*</ul>
             </li> */}
-            
-              <li className="nav-item">
-                <a href="#" className="nav-link">
-                  <i className="nav-icon fas fa-user" />
-                  <p>
-                    Usuarios
-                    <i className="fas fa-angle-left right" />
-                  </p>
-                </a>
-                <ul className="nav nav-treeview">
-                  <li className="nav-item">
-                    <Link to="/users" className="nav-link">
-                      <i className="far fa-circle nav-icon" />
-                      <p>usuarios</p>
-                    </Link>
-                  </li>
-                  <li className="nav-item">
-                    <Link to="/users/add" className="nav-link">
-                      <i className="far fa-circle nav-icon" />
-                      <p>Crear Nuevo usuario</p>
-                    </Link>
-                  </li>
-                </ul>
-            
-              </li>
 
-            <li className="nav-item">
+
+<li className="nav-item">
                 <a href="#" className="nav-link">
                   <i className="nav-icon fas fa-calendar-alt" />
                   <p>
@@ -259,6 +241,34 @@ export default function Menu() {
                 </ul>
             
             </li>
+            
+             <li className="nav-header">ADMINISTRACION</li>
+              <li className="nav-item">
+                <a href="#" className="nav-link">
+                  <i className="nav-icon fas fa-user" />
+                  <p>
+                    Usuarios
+                    <i className="fas fa-angle-left right" />
+                  </p>
+                </a>
+                <ul className="nav nav-treeview">
+                  <li className="nav-item">
+                    <Link to="/users" className="nav-link">
+                      <i className="far fa-circle nav-icon" />
+                      <p>usuarios</p>
+                    </Link>
+                  </li>
+                  <li className="nav-item">
+                    <Link to="/inactiveUser" className="nav-link">
+                      <i className="far fa-circle nav-icon" />
+                      <p>Inactivos</p>
+                    </Link>
+                  </li> 
+                </ul>
+            
+              </li>
+
+            
 
 
             <li className="nav-item">

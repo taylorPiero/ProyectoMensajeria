@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate, useLocation } from 'react-router-dom';
 import Header from './components/Header';
 import Menu from './components/Menu';
-import ContactList from './components/ContactList';
-import ContactForm from './components/ContactForm';
+import ContactList from './components/contactos/ContactList';
+import ContactForm from './components/contactos/ContactForm';
+import ContactInactivo from './components/contactos/ContactInactivo';
 import Compose from './components/Compose';
 import EmailDetail from './components/EmailDetail';
 import Chat from './components/whatsapp/Chat';
@@ -29,6 +30,8 @@ import EditRole from './components/roles/EditRole';
 import AddPerfile from './components/perfiles/AddPerfile';
 import EditPerfile from './components/perfiles/EditPerfile';
 import PerfileList from './components/perfiles/PerfileList';
+import InactiveUser from './components/usuarios/InactiveUser';
+
 
 function App() {
   const [token, setToken] = useState(null);
@@ -67,6 +70,8 @@ function AppContent({ setToken }) {
           <Route path="/contacts" element={<PrivateRoute><ContactList /></PrivateRoute>} />
           <Route path="/contacts/add" element={<PrivateRoute><ContactForm /></PrivateRoute>} />
           <Route path="/contacts/edit/:id" element={<PrivateRoute><ContactForm /></PrivateRoute>} />
+          <Route path="/contactinactivos" element={<PrivateRoute><ContactInactivo/></PrivateRoute>} />
+          <Route path="/inactiveUser" element={<PrivateRoute><InactiveUser/></PrivateRoute>} />
           <Route path="/sms/SmsList" element={<PrivateRoute><SmsList /></PrivateRoute>} />
           <Route path="/roleList" element={<PrivateRoute><RoleList/></PrivateRoute>}/>
           <Route path="/addRole" element={<PrivateRoute><AddRole/></PrivateRoute>}/>

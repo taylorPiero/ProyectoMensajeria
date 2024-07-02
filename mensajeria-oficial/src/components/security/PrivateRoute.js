@@ -11,26 +11,12 @@ const PrivateRoute = ({ children }) => {
 
 export default PrivateRoute;
 
-// import React from 'react';
-// import { Route, Navigate } from 'react-router-dom';
+// const PrivateRoute = ({ roles, children }) => {
+//   const token = localStorage.getItem('token');
+//   const userRoles = decodeToken(token).roles; // Implementa decodeToken para obtener roles del token
 
-// const PrivateRoute = ({ element: Element, ...rest }) => {
-//   const isAuthenticated = !!localStorage.getItem('token'); // Verifica la autenticación como mejor se adapte a tu aplicación
+//   // Verifica si el usuario tiene alguno de los roles permitidos
+//   const isAuthorized = roles.some(role => userRoles.includes(role));
 
-//   return isAuthenticated ? (
-//     <Route {...rest} element={<Element />} />
-//   ) : (
-//     <Navigate to="/login" replace />
-//   );
+//   return isAuthorized ? children : <Navigate to="/login" />;
 // };
-
-// export default PrivateRoute;
-
-
-
-// ConfirEmail
-// ConfirPassword
-// Login
-// Register
-// PrivateRoute
-// ProtectedRoute
