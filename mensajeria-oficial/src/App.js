@@ -23,6 +23,12 @@ import PrivateRoute from './components/security/PrivateRoute';
 import AddUser from './components/usuarios/AddUser';
 import UserList from './components/usuarios/UserList';
 import EditUser from './components/usuarios/EditUser';
+import RoleList from './components/roles/RoleList';
+import AddRole from './components/roles/AddRole';
+import EditRole from './components/roles/EditRole';
+import AddPerfile from './components/perfiles/AddPerfile';
+import EditPerfile from './components/perfiles/EditPerfile';
+import PerfileList from './components/perfiles/PerfileList';
 
 function App() {
   const [token, setToken] = useState(null);
@@ -62,6 +68,12 @@ function AppContent({ setToken }) {
           <Route path="/contacts/add" element={<PrivateRoute><ContactForm /></PrivateRoute>} />
           <Route path="/contacts/edit/:id" element={<PrivateRoute><ContactForm /></PrivateRoute>} />
           <Route path="/sms/SmsList" element={<PrivateRoute><SmsList /></PrivateRoute>} />
+          <Route path="/roleList" element={<PrivateRoute><RoleList/></PrivateRoute>}/>
+          <Route path="/addRole" element={<PrivateRoute><AddRole/></PrivateRoute>}/>
+          <Route path="/editRole" element={<PrivateRoute><EditRole/></PrivateRoute>}/>
+          <Route path="/addPerfile" element={<PrivateRoute><AddPerfile/></PrivateRoute>}/>
+          <Route path="/editPerfile" element={<PrivateRoute><EditPerfile/></PrivateRoute>}/>
+          <Route path="/perfileList" element={<PrivateRoute><PerfileList/></PrivateRoute>}/>   
           <Route path="/users" element={<PrivateRoute><UserList /></PrivateRoute>} />
           <Route path="/users/add" element={<PrivateRoute><AddUser /></PrivateRoute>} />
           <Route path="/users/edit/:id" element={<PrivateRoute><EditUser /></PrivateRoute>} />

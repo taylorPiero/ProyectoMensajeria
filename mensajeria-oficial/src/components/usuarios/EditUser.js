@@ -5,51 +5,67 @@ const EditUser = ({ id, onClose }) => {
   const [username, setUsername] = useState("");
   const [profileId, setProfileId] = useState("");
   const [roleId, setRoleId] = useState("");
-  const [profileName, setProfileName] = useState("");
-  const [roleName, setRoleName] = useState("");
+  const [profiles, setProfiles] = useState([]);
+  const [roles, setRoles] = useState([]);
 
   useEffect(() => {
     if (id) {
-      axios.get(`http://127.0.0.1:8081/pi001TO1_usuario_list_id/${id}`)
-        .then(async (response) => {
-          const user = response.data;
-          setUsername(user.PR_Usu_ch_nomb);
-          setProfileId(user.PR_Usu_perfid_fk);
-          setRoleId(user.PR_Usu_rolid_fk);
-
-          // Fetch profile and role names
-          const profileResponse = await axios.get(`http://127.0.0.1:8081/perfiles/${user.PR_Usu_perfid_fk}`);
-          const roleResponse = await axios.get(`http://127.0.0.1:8081/roles/${user.PR_Usu_rolid_fk}`);
-          setProfileName(profileResponse.data.PR_Usu_perf_ch_nomb);
-          setRoleName(roleResponse.data.PR_Usu_rol_ch_nomb);
-        })
-        .catch(error => {
-          console.error("Hubo un error al obtener los detalles del usuario!", error);
-        });
+      fetchUserDetails();
+      fetchProfiles();
+      fetchRoles();
     }
   }, [id]);
 
-  const handleSubmit = (event) => {
+  const fetchUserDetails = async () => {
+    try {
+      const response = await axios.get(`http://127.0.0.1:8081/pi001TO1_usuario_list_id/${id}`);
+      const user = response.data;
+      setUsername(user.PR_Usu_ch_nomb);
+      setProfileId(user.PR_Usu_perfid_fk);
+      setRoleId(user.PR_Usu_rolid_fk);
+    } catch (error) {
+      console.error("Hubo un error al obtener los detalles del usuario!", error);
+    }
+  };
+
+  const fetchProfiles = async () => {
+    try {
+      const response = await axios.get("http://127.0.0.1:8081/perfil_listget");
+      setProfiles(response.data);
+    } catch (error) {
+      console.error("Hubo un error al obtener los perfiles!", error);
+    }
+  };
+
+  const fetchRoles = async () => {
+    try {
+      const response = await axios.get("http://127.0.0.1:8081/roles_listget");
+      setRoles(response.data);
+    } catch (error) {
+      console.error("Hubo un error al obtener los roles!", error);
+    }
+  };
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const user = {
       PR_Usu_ch_nomb: username,
       PR_Usu_perfid_fk: profileId,
-      PR_Usu_rolid_fk: roleId
+      PR_Usu_rolid_fk: roleId,
     };
 
-    axios.put(`http://127.0.0.1:8081/pi005TO1_usuario_update/${id}`, user)
-      .then(() => {
-        onClose();
-      })
-      .catch(error => {
-        console.error("Hubo un error al actualizar el usuario!", error);
-      });
+    try {
+      await axios.put(`http://127.0.0.1:8081/pi005TO1_usuario_update/${id}`, user);
+      onClose();
+    } catch (error) {
+      console.error("Hubo un error al actualizar el usuario!", error);
+    }
   };
 
   return (
-    <div className="modal show" style={{ display: 'block' }}>
+    <div className="modal show" style={{ display: "block" }}>
       <div className="modal-dialog">
-        <div className="modal-content">
+        <div className="modal-content card-primary card-outline modal-responsive">
           <div className="modal-header">
             <h5 className="modal-title">Editar Usuario</h5>
             <button type="button" className="close" onClick={onClose}>
@@ -76,8 +92,12 @@ const EditUser = ({ id, onClose }) => {
                   onChange={(e) => setProfileId(e.target.value)}
                   required
                 >
-                  <option value="">{profileName}</option>
-                  {/* Aquí puedes agregar opciones adicionales de perfiles */}
+                  <option value="">Seleccionar perfil</option>
+                  {profiles.map((profile) => (
+                    <option key={profile.PR_Usu_perf_id} value={profile.PR_Usu_perf_id}>
+                      {profile.PR_Usu_perf_ch_nomb}
+                    </option>
+                  ))}
                 </select>
               </div>
               <div className="form-group">
@@ -88,13 +108,21 @@ const EditUser = ({ id, onClose }) => {
                   onChange={(e) => setRoleId(e.target.value)}
                   required
                 >
-                  <option value="">{roleName}</option>
-                  {/* Aquí puedes agregar opciones adicionales de roles */}
+                  <option value="">Seleccionar rol</option>
+                  {roles.map((role) => (
+                    <option key={role.PR_Usu_rol_id} value={role.PR_Usu_rol_id}>
+                      {role.PR_Usu_rol_ch_nomb}
+                    </option>
+                  ))}
                 </select>
               </div>
               <div className="modal-footer">
-                <button type="button" className="btn btn-secondary" onClick={onClose}>Cancelar</button>
-                <button type="submit" className="btn btn-primary">Actualizar</button>
+                <button type="button" className="btn btn-secondary" onClick={onClose}>
+                  Cancelar
+                </button>
+                <button type="submit" className="btn btn-primary">
+                  Actualizar
+                </button>
               </div>
             </form>
           </div>

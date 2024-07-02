@@ -70,7 +70,7 @@ const ContactForm = ({ id, onClose, modalType }) => {
     <div className="modal show d-block" tabIndex="-1" role="dialog">
       <div className="modal-dialog modal-lg" role="document">
         <div className="modal-content card-primary card-outline modal-responsive">
-          <div className="modal-header" style={{ backgroundColor: modalType === 'edit' ? '#007bff' : '#ebf8ff', color: '#1a202c' }}>
+          <div className="modal-header" style={{ backgroundColor: modalType === 'edit' ? '#' : '#' }}>
             <h5 className="modal-title">{modalType === 'edit' ? 'Editar Contacto' : 'Agregar Nuevo Contacto'}</h5>
             <button type="button" className="close" aria-label="Close" onClick={onClose}>
               <span aria-hidden="true">&times;</span>

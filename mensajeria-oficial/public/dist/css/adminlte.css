@@ -52265,14 +52265,14 @@ a.text-muted:hover {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: #f4f6f9; /* Color de fondo opcional */
+  background-color: #f4f6f9; 
   margin: 0;
   padding: 0;
 }
 
 .login-box {
-  width: 360px; /* Ancho del formulario de login */
-  margin: 0 auto; /* Centrar horizontalmente */
+  width: 360px; 
+  margin: 0 auto; 
 }
 
 .card {
