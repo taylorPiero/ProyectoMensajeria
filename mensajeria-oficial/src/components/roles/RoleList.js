@@ -66,7 +66,7 @@ const RoleList = () => {
       <table className="table table-bordered table-striped">
         <thead>
           <tr>
-            <th>    </th>
+            <th> ID</th>
             <th>Nombre del Rol</th>
             <th>Opciones</th>
           </tr>

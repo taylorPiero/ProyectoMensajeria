@@ -74,7 +74,8 @@ const PerfileList = () => {
       <table className="table table-bordered table-striped" >
         <thead>
           <tr>
-            <th> </th>
+            <th>ID</th>
+            {/* <th>codigo</th> */}
             <th>Nombre del Perfil</th>
             <th>Opciones</th>
           </tr>
@@ -82,6 +83,7 @@ const PerfileList = () => {
         <tbody>
           {perfiles.map(perfile => (
             <tr key={perfile.PR_Usu_perf_id}>
+              {/* <td>{perfile.PR_Usu_perf_id}</td> */}
               <td>{perfile.PR_Usu_perf_id}</td>
               <td>{perfile.PR_Usu_perf_ch_nomb}</td>
               <td>

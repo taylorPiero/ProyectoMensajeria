@@ -1,0 +1,106 @@
+
+email: oliver.cornelius.13@gmail.com
+password: T@ylor2415199608
+code: 3QCXAX
+code recory: YPE8BKZE6828UK34S3MUZWPY
+
+numero de prueba :19253579993
+
+Número de teléfono de Twilio: (925) 357-9993
+Código de acceso: 123456
+
+token identificacion: 67b1da453a3a73121f36b72043f7b27c
+SID de la cuenta: AC38ebd1270f9b5f3014bbf31c066e0666
+
+# para enviar mensajes SMS 
+
+from twilio.rest import Client
+
+account_sid = 'AC38ebd1270f9b5f3014bbf31c066e0666'
+auth_token = '67b1da453a3a73121f36b72043f7b27c'
+client = Client(account_sid, auth_token)
+
+message = client.messages.create(
+  from_='+19253579993',
+  body='prueba',
+  to='+51992384796'
+)
+
+print(message.sid)
+
+
+##################################33
+HTML PARA IMPLEMENTAR LA VISTA DE mensajes
+#######################3
+
+
+<body class="hold-transition sidebar-mini">
+<div class="wrapper">
+  <!-- Navbar -->
+  
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+            <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">Ribbons</h3>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">  //parece que aqui es 
+                <div class="row mt-4">
+                  <div class="col-sm-4">
+                    <div class="position-relative p-3 bg-gray" style="height: 180px">
+                      <div class="ribbon-wrapper ribbon-lg">
+                        <div class="ribbon bg-success text-lg">
+                          Ribbon
+                        </div>
+                      </div>
+                      Ribbon Large <br /> with Large Text <br />
+                      <small>.ribbon-wrapper.ribbon-lg .ribbon.text-lg</small>
+                    </div>
+                  </div>
+                  <div class="col-sm-4">
+                    <div class="position-relative p-3 bg-gray" style="height: 180px">
+                      <div class="ribbon-wrapper ribbon-xl">
+                        <div class="ribbon bg-warning text-lg">
+                          Ribbon
+                        </div>
+                      </div>
+                      Ribbon Extra Large <br /> with Large Text <br />
+                      <small>.ribbon-wrapper.ribbon-xl .ribbon.text-lg</small>
+                    </div>
+                  </div>
+                  <div class="col-sm-4">
+                    <div class="position-relative p-3 bg-gray" style="height: 180px">
+                      <div class="ribbon-wrapper ribbon-xl">
+                        <div class="ribbon bg-danger text-xl">
+                          Ribbon
+                        </div>
+                      </div>
+                      Ribbon Extra Large <br /> with Extra Large Text <br />
+                      <small>.ribbon-wrapper.ribbon-xl .ribbon.text-xl</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </div>
+      <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+
+</body>
+</html>

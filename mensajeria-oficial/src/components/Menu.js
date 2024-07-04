@@ -2,6 +2,16 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 export default function Menu() {
+  // const rol='supervisor' //la declaramos
+  // const handlepermiso = () =>{
+  //   if(rol==='supervisor'){ //para dar permiso hasta donde quiero darle 
+  //     window.location.replace('/sendSMS')
+  //   }else{
+  //     window.alert('no puedes ingresar aca')
+  //     return
+
+  //   }
+  // }
   return (
     <aside className="main-sidebar sidebar-dark-primary elevation-4">
       {/* Brand Logo */}
@@ -167,13 +177,14 @@ export default function Menu() {
               </a>
               <ul className="nav nav-treeview">
                 <li className="nav-item">
-                  <a href="/sms/SmsList" className="nav-link">
+                  {/* <a  className="nav-link"  onClick={handlepermiso}> */}
+                  <a href="/sendSMS" className="nav-link">
                     <i className="far fa-circle nav-icon" />
                     <p>sms</p>
                   </a>
                 </li>
                 <li className="nav-item">
-                  <a href="/whatsapp/groups" className="nav-link">
+                  <a href="/grupos" className="nav-link">
                     <i className="far fa-circle nav-icon" />
                     <p>Grupos</p>
                   </a>

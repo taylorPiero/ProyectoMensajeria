@@ -50,7 +50,7 @@ const ContactDetal = ({ contactId, show, onHide }) => {
       fetchContactDetails(contactId);
       setShowEditModal(false);
       setEditDetail(null);
-      setShowEditConfirmation(true); // Mostrar mensaje de confirmación de edición
+      setShowEditConfirmation(true); // muestro el mensaje de confirmación de edición
       setTimeout(() => setShowEditConfirmation(false), 5000); // Ocultar mensaje después de 5 segundos
     } catch (error) {
       console.error('Error updating contact detail:', error);

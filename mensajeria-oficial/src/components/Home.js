@@ -108,7 +108,7 @@ export default function Home() {
                 <div className="icon">
                   <i className="nav-icon far fa-envelope" />
                 </div>
-                <a href="#" className="small-box-footer">
+                <a href="/sendSMS" className="small-box-footer">
                   More info <i className="fas fa-arrow-circle-right" />
                 </a>
               </div>
