@@ -176,31 +176,3 @@ th, td {
   padding: 20px;
 }
 
-/*para la lista de chat de wsp*/
-.chat_list {
-  display: block;
-  background-color: #fff;
-  padding: 10px;
-  margin-bottom: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  transition: background-color 0.3s ease;
-}
-
-.chat_list:hover {
-  background-color: #f0f0f0;
-  cursor: pointer;
-}
-
-.chat_list .chat_people {
-  display: flex;
-  align-items: center;
-}
-
-.chat_list .chat_img {
-  margin-right: 10px;
-}
-
-.chat_list .chat_ib {
-  flex: 1;
-}

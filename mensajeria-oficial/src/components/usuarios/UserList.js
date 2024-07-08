@@ -8,8 +8,8 @@ const UserList = () => {
   const [selectedUserId, setSelectedUserId] = useState(null);
   const [showAddUserModal, setShowAddUserModal] = useState(false);
   const [showEditUserModal, setShowEditUserModal] = useState(false);
-  const [currentPage, setCurrentPage] = useState(1);
   const [showDeleteConfirmationModal, setShowDeleteConfirmationModal] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
   const usersPerPage = 15;
 
   useEffect(() => {
@@ -41,6 +41,19 @@ const UserList = () => {
   const handleDelete = (id) => {
     setSelectedUserId(id);
     setShowDeleteConfirmationModal(true);
+  };
+
+  const confirmDelete = () => {
+    axios
+      .delete(`http://127.0.0.1:8081/pi004TO1_usuarios_delete/${selectedUserId}`)
+      .then(() => {
+        setUsers(users.filter((user) => user.PR_Usu_in_id !== selectedUserId));
+        setShowDeleteConfirmationModal(false);
+        setSelectedUserId(null);
+      })
+      .catch((error) => {
+        console.error("Hubo un error al eliminar el usuario!", error);
+      });
   };
 
   const openAddUserModal = () => {
@@ -118,6 +131,31 @@ const UserList = () => {
 
       {showAddUserModal && <AddUser onClose={closeAddUserModal} />}
       {showEditUserModal && <EditUser id={selectedUserId} onClose={closeEditUserModal} />}
+      {showDeleteConfirmationModal && (
+        <div className="modal show" style={{ display: "block" }}>
+          <div className="modal-dialog">
+            <div className="modal-content card-danger card-outline modal-responsive">
+              <div className="modal-header">
+                <h5 className="modal-title">Confirmar Eliminación</h5>
+                <button type="button" className="close" onClick={() => setShowDeleteConfirmationModal(false)}>
+                  <span>&times;</span>
+                </button>
+              </div>
+              <div className="modal-body">
+                <p>¿Estás seguro que deseas eliminar a este usuario?</p>
+              </div>
+              <div className="modal-footer">
+                <button type="button" className="btn btn-secondary" onClick={() => setShowDeleteConfirmationModal(false)}>
+                  Cancelar
+                </button>
+                <button type="button" className="btn btn-danger" onClick={confirmDelete}>
+                  Eliminar
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       <div className="pagination">
         {Array.from({ length: totalPages }, (_, index) => (

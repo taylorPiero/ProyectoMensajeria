@@ -21,8 +21,8 @@ const EditUser = ({ id, onClose }) => {
       const response = await axios.get(`http://127.0.0.1:8081/pi001TO1_usuario_list_id/${id}`);
       const user = response.data;
       setUsername(user.PR_Usu_ch_nomb);
-      setProfileId(user.PR_Usu_perfid_fk);
-      setRoleId(user.PR_Usu_rolid_fk);
+      setProfileId(user.perfil.PR_Usu_perf_id.toString());
+      setRoleId(user.rol.PR_Usu_rol_id.toString());
     } catch (error) {
       console.error("Hubo un error al obtener los detalles del usuario!", error);
     }
@@ -94,7 +94,7 @@ const EditUser = ({ id, onClose }) => {
                 >
                   <option value="">Seleccionar perfil</option>
                   {profiles.map((profile) => (
-                    <option key={profile.PR_Usu_perf_id} value={profile.PR_Usu_perf_id}>
+                    <option key={profile.PR_Usu_perf_id} value={profile.PR_Usu_perf_id.toString()}>
                       {profile.PR_Usu_perf_ch_nomb}
                     </option>
                   ))}
@@ -110,7 +110,7 @@ const EditUser = ({ id, onClose }) => {
                 >
                   <option value="">Seleccionar rol</option>
                   {roles.map((role) => (
-                    <option key={role.PR_Usu_rol_id} value={role.PR_Usu_rol_id}>
+                    <option key={role.PR_Usu_rol_id} value={role.PR_Usu_rol_id.toString()}>
                       {role.PR_Usu_rol_ch_nomb}
                     </option>
                   ))}

@@ -3,6 +3,7 @@ import axios from "../../api/axios";
 
 const AddUser = ({ onClose }) => {
   const [username, setUsername] = useState("");
+  const [password, setPassword] = useState(""); // Nuevo estado para la contraseña
   const [profileId, setProfileId] = useState("");
   const [roleId, setRoleId] = useState("");
   const [perfiles, setPerfiles] = useState([]);
@@ -39,12 +40,13 @@ const AddUser = ({ onClose }) => {
     event.preventDefault();
     const user = {
       PR_Usu_ch_nomb: username,
+      PR_Usu_ch_pass: password,
       PR_Usu_perfid_fk: profileId,
       PR_Usu_rolid_fk: roleId,
     };
 
     axios
-      .post("http://127.0.0.1:8081/pi003TO1_usuario_add", user)
+      .post("http://127.0.0.1:8081/pi003TO1_usuario_add_sin_token", user)
       .then(() => {
         onClose();
       })
@@ -72,6 +74,16 @@ const AddUser = ({ onClose }) => {
                   className="form-control"
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
+                  required
+                />
+              </div>
+              <div className="form-group">
+                <label>Contraseña</label>
+                <input
+                  type="password"
+                  className="form-control"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                   required
                 />
               </div>

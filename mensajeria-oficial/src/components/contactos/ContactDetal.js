@@ -2,8 +2,9 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 const ContactDetal = ({ contactId, show, onHide }) => {
+  console.log(contactId)
   const [details, setDetails] = useState([]);
-  const [newDetail, setNewDetail] = useState({ PR_DetP_ch_tel: '', PR_DetP_ch_email: '', PR_DetP_ch_sexo: 'M' });
+  const [newDetail, setNewDetail] = useState({ PR_DetP_ch_tel: '', PR_DetP_ch_email: '', PR_DetP_ch_sexo: 'M', FK_PR_Pers: contactId });
   const [editDetail, setEditDetail] = useState(null);
   const [showAddModal, setShowAddModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
@@ -64,10 +65,10 @@ const ContactDetal = ({ contactId, show, onHide }) => {
     }
 
     try {
-      await axios.post(`http://127.0.0.1:8081/pi003TO1_personasdetalle_add/`, { ...newDetail, FK_PR_Pers: contactId });
+      await axios.post(`http://127.0.0.1:8081/pi003TO1_personasdetalle_add/`, { ...newDetail });
       fetchContactDetails(contactId);
       setShowAddModal(false);
-      setNewDetail({ PR_DetP_ch_tel: '', PR_DetP_ch_email: '', PR_DetP_ch_sexo: 'M' });
+      setNewDetail({ PR_DetP_ch_tel: '', PR_DetP_ch_email: '', PR_DetP_ch_sexo: 'M',FK_PR_Pers:contactId });
       setShowSaveConfirmation(true); // Mostrar mensaje de confirmación de guardado
       setTimeout(() => setShowSaveConfirmation(false), 3000); // Ocultar mensaje después de 3 segundos
     } catch (error) {

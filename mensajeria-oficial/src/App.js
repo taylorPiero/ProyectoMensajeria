@@ -7,9 +7,6 @@ import ContactForm from './components/contactos/ContactForm';
 import ContactInactivo from './components/contactos/ContactInactivo';
 import Compose from './components/Compose';
 import EmailDetail from './components/EmailDetail';
-import Chat from './components/whatsapp/Chat';
-import Groups from './components/whatsapp/Groups';
-// import Others from './components/whatsapp/Others';
 import Home from './components/Home';
 import Inbox from './components/Inbox';
 import EventForm from './components/eventos/EventForm';
@@ -36,6 +33,9 @@ import InactiveUser from './components/usuarios/InactiveUser';
 import GroupList from './components/grupos/GroupList';
 import AddGroup from './components/grupos/AddGroup';
 import EditGroup from './components/grupos/EditGroup';
+import SendWhats from './components/whatsapp/SendWhats';
+// import SendWsp from './components/whatsapp/SendWsp';
+
 
 function App() {
   const [token, setToken] = useState(null);
@@ -81,6 +81,8 @@ function AppContent({ setToken }) {
           <Route path="/contactinactivos" element={<PrivateRoute><ContactInactivo/></PrivateRoute>} />
           <Route path="/inactiveUser" element={<PrivateRoute><InactiveUser/></PrivateRoute>} />
           <Route path="/sendSMS" element={<PrivateRoute><SendSMS /></PrivateRoute>} />
+          {/* <Route path="/sendWsp" element={<PrivateRoute><SendWsp /></PrivateRoute>} /> */}
+          <Route path="/sendWhats" element={<PrivateRoute><SendWhats /></PrivateRoute>} />
           <Route path="/smsList" element={<PrivateRoute><SmsList /></PrivateRoute>} />
           <Route path="/smsForm" element={<PrivateRoute><SmsForm /></PrivateRoute>} />
           <Route path="/grupos" element={<PrivateRoute><GroupList/></PrivateRoute>}/>
@@ -98,9 +100,6 @@ function AppContent({ setToken }) {
           <Route path="/inbox" element={<PrivateRoute><Inbox /></PrivateRoute>} />
           <Route path="/compose" element={<PrivateRoute><Compose /></PrivateRoute>} />
           <Route path="/email" element={<PrivateRoute><EmailDetail /></PrivateRoute>} />
-          <Route path="/whatsapp/chat" element={<PrivateRoute><Chat /></PrivateRoute>} />
-          <Route path="/whatsapp/groups" element={<PrivateRoute><Groups /></PrivateRoute>} />
-          {/* <Route path="/whatsapp/others" element={<PrivateRoute><Others /></PrivateRoute>} /> */}
           <Route path="/eventos" element={<PrivateRoute><EventList /></PrivateRoute>} />
           <Route path="/eventos/create" element={<PrivateRoute><EventForm /></PrivateRoute>} />
           <Route path="/eventos/:id" element={<PrivateRoute><EventDetails /></PrivateRoute>} />

@@ -1,52 +1,52 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import axios from "../../api/axios";
 
-const ContactInactivo = () => {
-  const [contacts, setContacts] = useState([]);
-  const [selectedContactIds, setSelectedContactIds] = useState([]);
+const Contactinactivo = () => {
+  const [users, setUsers] = useState([]);
+  const [selectedUserIds, setSelectedUserIds] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const contactsPerPage = 15;
+  const usersPerPage = 15;
 
   useEffect(() => {
-    fetchInactiveContacts();
+    fetchInactiveUsers();
   }, []);
 
-  const fetchInactiveContacts = () => {
+  const fetchInactiveUsers = () => {
     axios
-      .get("http://127.0.0.1:8081/pi002T01_personas_listget_inactive/")
+      .get("/usuario_listget_inactive/")
       .then((response) => {
-        setContacts(response.data);
+        setUsers(response.data);
       })
       .catch((error) => {
-        console.error("Hubo un error al obtener los contactos inactivos!", error);
+        console.error("Hubo un error al obtener los usuarios inactivos!", error);
       });
   };
 
-  const handleSelectContact = (id) => {
-    if (selectedContactIds.includes(id)) {
-      setSelectedContactIds(selectedContactIds.filter((contactId) => contactId !== id));
+  const handleSelectUser = (id) => {
+    if (selectedUserIds.includes(id)) {
+      setSelectedUserIds(selectedUserIds.filter((userId) => userId !== id));
     } else {
-      setSelectedContactIds([...selectedContactIds, id]);
+      setSelectedUserIds([...selectedUserIds, id]);
     }
   };
 
-  const handleSelectAllContacts = () => {
-    if (selectedContactIds.length === contacts.length) {
-      setSelectedContactIds([]);
+  const handleSelectAllUsers = () => {
+    if (selectedUserIds.length === users.length) {
+      setSelectedUserIds([]);
     } else {
-      setSelectedContactIds(contacts.map((contact) => contact.PR_Per_in_id));
+      setSelectedUserIds(users.map((user) => user.PR_Usu_in_id));
     }
   };
 
-  const handleActivateContacts = () => {
+  const handleActivateUsers = () => {
     axios
-      .put("http://127.0.0.1:8081/pi002T01_personas_update_estado/", selectedContactIds)
+      .put("/usuario_update_estado/", { usuarios_ids: selectedUserIds })
       .then(() => {
-        fetchInactiveContacts();
-        setSelectedContactIds([]);
+        fetchInactiveUsers();
+        setSelectedUserIds([]);
       })
       .catch((error) => {
-        console.error("Hubo un error al activar los contactos!", error);
+        console.error("Hubo un error al activar los usuarios!", error);
       });
   };
 
@@ -54,22 +54,22 @@ const ContactInactivo = () => {
     setCurrentPage(pageNumber);
   };
 
-  const totalPages = Math.ceil(contacts.length / contactsPerPage);
-  const startIndex = (currentPage - 1) * contactsPerPage;
-  const currentContacts = contacts.slice(startIndex, startIndex + contactsPerPage);
+  const totalPages = Math.ceil(users.length / usersPerPage);
+  const startIndex = (currentPage - 1) * usersPerPage;
+  const currentUsers = users.slice(startIndex, startIndex + usersPerPage);
 
   return (
     <div className="container">
-      <h2>Contactos Inactivos</h2>
-      <button onClick={handleSelectAllContacts} className="btn btn-primary mb-3 mr-3">
-        {selectedContactIds.length === contacts.length ? 'Desmarcar ' : 'Seleccionar Todos'}
+      <h2>Usuarios Inactivos</h2>
+      <button onClick={handleSelectAllUsers} className="btn btn-primary mb-3 mr-3">
+        {selectedUserIds.length === users.length ? 'Desmarcar Todos' : 'Seleccionar Todos'}
       </button>
       <button
-        onClick={handleActivateContacts}
+        onClick={handleActivateUsers}
         className="btn btn-success mb-3"
-        disabled={selectedContactIds.length === 0}
+        disabled={selectedUserIds.length === 0}
       >
-        Activar Contactos Marcados
+        Activar Usuarios Marcados
       </button>
       <div className="table-responsive">
         <table className="table table-bordered table-striped">
@@ -78,34 +78,28 @@ const ContactInactivo = () => {
               <th>
                 <input
                   type="checkbox"
-                  checked={selectedContactIds.length === contacts.length}
-                  onChange={handleSelectAllContacts}
+                  checked={selectedUserIds.length === users.length}
+                  onChange={handleSelectAllUsers}
                 />
               </th>
-              <th>Nombres</th>
-              <th>Apellidos</th>
-              <th>F. Nacimiento</th>
-              <th>Documento</th>
+              <th>Nombre de Usuario</th>
               <th>Opciones</th>
             </tr>
           </thead>
           <tbody>
-            {currentContacts.map((contact) => (
-              <tr key={contact.PR_Per_in_id}>
+            {currentUsers.map((user) => (
+              <tr key={user.PR_Usu_in_id}>
                 <td>
                   <input
                     type="checkbox"
-                    checked={selectedContactIds.includes(contact.PR_Per_in_id)}
-                    onChange={() => handleSelectContact(contact.PR_Per_in_id)}
+                    checked={selectedUserIds.includes(user.PR_Usu_in_id)}
+                    onChange={() => handleSelectUser(user.PR_Usu_in_id)}
                   />
                 </td>
-                <td>{contact.PR_Per_ch_nomb}</td>
-                <td>{`${contact.PR_Per_ch_apePat} ${contact.PR_Per_ch_apeMat}`}</td>
-                <td>{contact.PR_Per_dt_nac}</td>
-                <td>{contact.PR_Per_ch_doc}</td>
+                <td>{user.PR_Usu_ch_nomb}</td>
                 <td>
                   <button
-                    onClick={() => handleActivateContacts([contact.PR_Per_in_id])}
+                    onClick={() => handleActivateUsers([user.PR_Usu_in_id])}
                     className="btn btn-success btn-sm"
                   >
                     Activar
@@ -135,4 +129,4 @@ const ContactInactivo = () => {
   );
 };
 
-export default ContactInactivo;
+export default Contactinactivo;

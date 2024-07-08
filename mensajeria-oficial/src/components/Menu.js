@@ -147,7 +147,7 @@ export default function Menu() {
               </a>
               <ul className="nav nav-treeview">
                 <li className="nav-item">
-                  <a href="/whatsapp/chat" className="nav-link">
+                  <a href="/sendWhats" className="nav-link">
                     <i className="far fa-circle nav-icon" />
                     <p>Chat</p>
                   </a>
